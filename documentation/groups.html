@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Python: module groups</title>
+</head><body>
+
+<table class="heading">
+<tr class="heading-text decor">
+<td class="title">&nbsp;<br><strong class="title">groups</strong></td>
+<td class="extra"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Cuser%5Cdesktop%5Cgame-jam-main%5Cgroups.py">c:\users\user\desktop\game-jam-main\groups.py</a></td></tr></table>
+    <p></p>
+<p>
+<table class="section">
+<tr class="decor pkg-content-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Modules</strong></td></tr>
+    
+<tr><td class="decor pkg-content-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><table><tr><td class="multicolumn"><a href="pygame.html">pygame</a><br>
+</td><td class="multicolumn"><a href="sys.html">sys</a><br>
+</td><td class="multicolumn"></td><td class="multicolumn"></td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor index-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Classes</strong></td></tr>
+    
+<tr><td class="decor index-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><dl>
+<dt class="heading-text"><a href="pygame.sprite.html#Group">pygame.sprite.Group</a>(<a href="pygame.sprite.html#AbstractGroup">pygame.sprite.AbstractGroup</a>)
+</dt><dd>
+<dl>
+<dt class="heading-text"><a href="groups.html#AllSprites">AllSprites</a>
+</dt><dt class="heading-text"><a href="groups.html#WorldSprites">WorldSprites</a>
+</dt></dl>
+</dd>
+</dl>
+ <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="AllSprites">class <strong>AllSprites</strong></a>(<a href="pygame.sprite.html#Group">pygame.sprite.Group</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#AllSprites">AllSprites</a>(width,&nbsp;height,&nbsp;clouds,&nbsp;horizon_line,&nbsp;data,&nbsp;bg_tile=None,&nbsp;top_limit=0)<br>
+&nbsp;<br>
+<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt>Method resolution order:</dt>
+<dd><a href="groups.html#AllSprites">AllSprites</a></dd>
+<dd><a href="pygame.sprite.html#Group">pygame.sprite.Group</a></dd>
+<dd><a href="pygame.sprite.html#AbstractGroup">pygame.sprite.AbstractGroup</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="AllSprites-__init__"><strong>__init__</strong></a>(self, width, height, clouds, horizon_line, data, bg_tile=None, top_limit=0)</dt><dd><span class="code">Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</span></dd></dl>
+
+<dl><dt><a name="AllSprites-camera_constraint"><strong>camera_constraint</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AllSprites-create_cloud"><strong>create_cloud</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AllSprites-draw"><strong>draw</strong></a>(self, target_pos, dt)</dt><dd><span class="code">draw&nbsp;all&nbsp;sprites&nbsp;onto&nbsp;the&nbsp;surface<br>
+&nbsp;<br>
+<a href="pygame.sprite.html#Group">Group</a>.<a href="#AllSprites-draw">draw</a>(surface):&nbsp;return&nbsp;Rect_list<br>
+&nbsp;<br>
+Draws&nbsp;all&nbsp;of&nbsp;the&nbsp;member&nbsp;sprites&nbsp;onto&nbsp;the&nbsp;given&nbsp;surface.</span></dd></dl>
+
+<dl><dt><a name="AllSprites-draw_large_cloud"><strong>draw_large_cloud</strong></a>(self, dt)</dt></dl>
+
+<dl><dt><a name="AllSprites-draw_sky"><strong>draw_sky</strong></a>(self)</dt></dl>
+
+<hr>
+Methods inherited from <a href="pygame.sprite.html#AbstractGroup">pygame.sprite.AbstractGroup</a>:<br>
+<dl><dt><a name="AllSprites-__bool__"><strong>__bool__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AllSprites-__contains__"><strong>__contains__</strong></a>(self, sprite)</dt></dl>
+
+<dl><dt><a name="AllSprites-__iter__"><strong>__iter__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="AllSprites-__len__"><strong>__len__</strong></a>(self)</dt><dd><span class="code">return&nbsp;number&nbsp;of&nbsp;sprites&nbsp;in&nbsp;group<br>
+&nbsp;<br>
+<a href="pygame.sprite.html#Group">Group</a>.len(group):&nbsp;return&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;sprites&nbsp;contained&nbsp;in&nbsp;the&nbsp;group.</span></dd></dl>
+
+<dl><dt><a name="AllSprites-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><span class="code">Return&nbsp;repr(self).</span></dd></dl>
+
+<dl><dt><a name="AllSprites-add"><strong>add</strong></a>(self, *sprites)</dt><dd><span class="code">add&nbsp;sprite(s)&nbsp;to&nbsp;group<br>
+&nbsp;<br>
+<a href="pygame.sprite.html#Group">Group</a>.<a href="#AllSprites-add">add</a>(sprite,&nbsp;list,&nbsp;group,&nbsp;...):&nbsp;return&nbsp;None<br>
+&nbsp;<br>
+Adds&nbsp;a&nbsp;sprite&nbsp;or&nbsp;sequence&nbsp;of&nbsp;sprites&nbsp;to&nbsp;a&nbsp;group.</span></dd></dl>
+
+<dl><dt><a name="AllSprites-add_internal"><strong>add_internal</strong></a>(self, sprite, layer=None)</dt><dd><span class="code">For&nbsp;adding&nbsp;a&nbsp;sprite&nbsp;to&nbsp;this&nbsp;group&nbsp;internally.<br>
+&nbsp;<br>
+:param&nbsp;sprite:&nbsp;The&nbsp;sprite&nbsp;we&nbsp;are&nbsp;adding.<br>
+:param&nbsp;layer:&nbsp;the&nbsp;layer&nbsp;to&nbsp;add&nbsp;to,&nbsp;if&nbsp;the&nbsp;group&nbsp;type&nbsp;supports&nbsp;layers</span></dd></dl>
+
+<dl><dt><a name="AllSprites-clear"><strong>clear</strong></a>(self, surface, bgd)</dt><dd><span class="code">erase&nbsp;the&nbsp;previous&nbsp;position&nbsp;of&nbsp;all&nbsp;sprites<br>
+&nbsp;<br>
+<a href="pygame.sprite.html#Group">Group</a>.<a href="#AllSprites-clear">clear</a>(surface,&nbsp;bgd):&nbsp;return&nbsp;None<br>
+&nbsp;<br>
+Clears&nbsp;the&nbsp;area&nbsp;under&nbsp;every&nbsp;drawn&nbsp;sprite&nbsp;in&nbsp;the&nbsp;group.&nbsp;The&nbsp;bgd<br>
+argument&nbsp;should&nbsp;be&nbsp;Surface&nbsp;which&nbsp;is&nbsp;the&nbsp;same&nbsp;dimensions&nbsp;as&nbsp;the<br>
+screen&nbsp;surface.&nbsp;The&nbsp;bgd&nbsp;could&nbsp;also&nbsp;be&nbsp;a&nbsp;function&nbsp;which&nbsp;accepts<br>
+the&nbsp;given&nbsp;surface&nbsp;and&nbsp;the&nbsp;area&nbsp;to&nbsp;be&nbsp;cleared&nbsp;as&nbsp;arguments.</span></dd></dl>
+
+<dl><dt><a name="AllSprites-copy"><strong>copy</strong></a>(self)</dt><dd><span class="code">copy&nbsp;a&nbsp;group&nbsp;with&nbsp;all&nbsp;the&nbsp;same&nbsp;sprites<br>
+&nbsp;<br>
+<a href="pygame.sprite.html#Group">Group</a>.<a href="#AllSprites-copy">copy</a>():&nbsp;return&nbsp;<a href="pygame.sprite.html#Group">Group</a><br>
+&nbsp;<br>
+Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;group&nbsp;that&nbsp;is&nbsp;an&nbsp;instance&nbsp;of&nbsp;the&nbsp;same&nbsp;class<br>
+and&nbsp;has&nbsp;the&nbsp;same&nbsp;sprites&nbsp;in&nbsp;it.</span></dd></dl>
+
+<dl><dt><a name="AllSprites-empty"><strong>empty</strong></a>(self)</dt><dd><span class="code">remove&nbsp;all&nbsp;sprites<br>
+&nbsp;<br>
+<a href="pygame.sprite.html#Group">Group</a>.<a href="#AllSprites-empty">empty</a>():&nbsp;return&nbsp;None<br>
+&nbsp;<br>
+Removes&nbsp;all&nbsp;the&nbsp;sprites&nbsp;from&nbsp;the&nbsp;group.</span></dd></dl>
+
+<dl><dt><a name="AllSprites-has"><strong>has</strong></a>(self, *sprites)</dt><dd><span class="code">ask&nbsp;if&nbsp;group&nbsp;has&nbsp;a&nbsp;sprite&nbsp;or&nbsp;sprites<br>
+&nbsp;<br>
+<a href="pygame.sprite.html#Group">Group</a>.<a href="#AllSprites-has">has</a>(sprite&nbsp;or&nbsp;group,&nbsp;...):&nbsp;return&nbsp;bool<br>
+&nbsp;<br>
+Returns&nbsp;True&nbsp;if&nbsp;the&nbsp;given&nbsp;sprite&nbsp;or&nbsp;sprites&nbsp;are&nbsp;contained&nbsp;in&nbsp;the<br>
+group.&nbsp;Alternatively,&nbsp;you&nbsp;can&nbsp;get&nbsp;the&nbsp;same&nbsp;information&nbsp;using&nbsp;the<br>
+'in'&nbsp;operator,&nbsp;e.g.&nbsp;'sprite&nbsp;in&nbsp;group',&nbsp;'subgroup&nbsp;in&nbsp;group'.</span></dd></dl>
+
+<dl><dt><a name="AllSprites-has_internal"><strong>has_internal</strong></a>(self, sprite)</dt><dd><span class="code">For&nbsp;checking&nbsp;if&nbsp;a&nbsp;sprite&nbsp;is&nbsp;in&nbsp;this&nbsp;group&nbsp;internally.<br>
+&nbsp;<br>
+:param&nbsp;sprite:&nbsp;The&nbsp;sprite&nbsp;we&nbsp;are&nbsp;checking.</span></dd></dl>
+
+<dl><dt><a name="AllSprites-remove"><strong>remove</strong></a>(self, *sprites)</dt><dd><span class="code">remove&nbsp;sprite(s)&nbsp;from&nbsp;group<br>
+&nbsp;<br>
+<a href="pygame.sprite.html#Group">Group</a>.<a href="#AllSprites-remove">remove</a>(sprite,&nbsp;list,&nbsp;or&nbsp;group,&nbsp;...):&nbsp;return&nbsp;None<br>
+&nbsp;<br>
+Removes&nbsp;a&nbsp;sprite&nbsp;or&nbsp;sequence&nbsp;of&nbsp;sprites&nbsp;from&nbsp;a&nbsp;group.</span></dd></dl>
+
+<dl><dt><a name="AllSprites-remove_internal"><strong>remove_internal</strong></a>(self, sprite)</dt><dd><span class="code">For&nbsp;removing&nbsp;a&nbsp;sprite&nbsp;from&nbsp;this&nbsp;group&nbsp;internally.<br>
+&nbsp;<br>
+:param&nbsp;sprite:&nbsp;The&nbsp;sprite&nbsp;we&nbsp;are&nbsp;removing.</span></dd></dl>
+
+<dl><dt><a name="AllSprites-sprites"><strong>sprites</strong></a>(self)</dt><dd><span class="code">get&nbsp;a&nbsp;list&nbsp;of&nbsp;sprites&nbsp;in&nbsp;the&nbsp;group<br>
+&nbsp;<br>
+<a href="pygame.sprite.html#Group">Group</a>.sprite():&nbsp;return&nbsp;list<br>
+&nbsp;<br>
+Returns&nbsp;an&nbsp;object&nbsp;that&nbsp;can&nbsp;be&nbsp;looped&nbsp;over&nbsp;with&nbsp;a&nbsp;'for'&nbsp;loop.&nbsp;(For&nbsp;now,<br>
+it&nbsp;is&nbsp;always&nbsp;a&nbsp;list,&nbsp;but&nbsp;this&nbsp;could&nbsp;change&nbsp;in&nbsp;a&nbsp;future&nbsp;version&nbsp;of<br>
+pygame.)&nbsp;Alternatively,&nbsp;you&nbsp;can&nbsp;get&nbsp;the&nbsp;same&nbsp;information&nbsp;by&nbsp;iterating<br>
+directly&nbsp;over&nbsp;the&nbsp;sprite&nbsp;group,&nbsp;e.g.&nbsp;'for&nbsp;sprite&nbsp;in&nbsp;group'.</span></dd></dl>
+
+<dl><dt><a name="AllSprites-update"><strong>update</strong></a>(self, *args, **kwargs)</dt><dd><span class="code">call&nbsp;the&nbsp;update&nbsp;method&nbsp;of&nbsp;every&nbsp;member&nbsp;sprite<br>
+&nbsp;<br>
+<a href="pygame.sprite.html#Group">Group</a>.<a href="#AllSprites-update">update</a>(*args,&nbsp;**kwargs):&nbsp;return&nbsp;None<br>
+&nbsp;<br>
+Calls&nbsp;the&nbsp;update&nbsp;method&nbsp;of&nbsp;every&nbsp;member&nbsp;sprite.&nbsp;All&nbsp;arguments&nbsp;that<br>
+were&nbsp;passed&nbsp;to&nbsp;this&nbsp;method&nbsp;are&nbsp;passed&nbsp;to&nbsp;the&nbsp;Sprite&nbsp;update&nbsp;function.</span></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="pygame.sprite.html#AbstractGroup">pygame.sprite.AbstractGroup</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+</td></tr></table> <p>
+<table class="section">
+<tr class="decor title-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><a name="WorldSprites">class <strong>WorldSprites</strong></a>(<a href="pygame.sprite.html#Group">pygame.sprite.Group</a>)</td></tr>
+    
+<tr><td class="decor title-decor" rowspan=2><span class="code">&nbsp;&nbsp;&nbsp;</span></td>
+<td class="decor title-decor" colspan=2><span class="code"><a href="#WorldSprites">WorldSprites</a>(data)<br>
+&nbsp;<br>
+<br>&nbsp;</span></td></tr>
+<tr><td>&nbsp;</td>
+<td class="singlecolumn"><dl><dt>Method resolution order:</dt>
+<dd><a href="groups.html#WorldSprites">WorldSprites</a></dd>
+<dd><a href="pygame.sprite.html#Group">pygame.sprite.Group</a></dd>
+<dd><a href="pygame.sprite.html#AbstractGroup">pygame.sprite.AbstractGroup</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="WorldSprites-__init__"><strong>__init__</strong></a>(self, data)</dt><dd><span class="code">Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</span></dd></dl>
+
+<dl><dt><a name="WorldSprites-draw"><strong>draw</strong></a>(self, target_pos)</dt><dd><span class="code">draw&nbsp;all&nbsp;sprites&nbsp;onto&nbsp;the&nbsp;surface<br>
+&nbsp;<br>
+<a href="pygame.sprite.html#Group">Group</a>.<a href="#WorldSprites-draw">draw</a>(surface):&nbsp;return&nbsp;Rect_list<br>
+&nbsp;<br>
+Draws&nbsp;all&nbsp;of&nbsp;the&nbsp;member&nbsp;sprites&nbsp;onto&nbsp;the&nbsp;given&nbsp;surface.</span></dd></dl>
+
+<hr>
+Methods inherited from <a href="pygame.sprite.html#AbstractGroup">pygame.sprite.AbstractGroup</a>:<br>
+<dl><dt><a name="WorldSprites-__bool__"><strong>__bool__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="WorldSprites-__contains__"><strong>__contains__</strong></a>(self, sprite)</dt></dl>
+
+<dl><dt><a name="WorldSprites-__iter__"><strong>__iter__</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="WorldSprites-__len__"><strong>__len__</strong></a>(self)</dt><dd><span class="code">return&nbsp;number&nbsp;of&nbsp;sprites&nbsp;in&nbsp;group<br>
+&nbsp;<br>
+<a href="pygame.sprite.html#Group">Group</a>.len(group):&nbsp;return&nbsp;int<br>
+&nbsp;<br>
+Returns&nbsp;the&nbsp;number&nbsp;of&nbsp;sprites&nbsp;contained&nbsp;in&nbsp;the&nbsp;group.</span></dd></dl>
+
+<dl><dt><a name="WorldSprites-__repr__"><strong>__repr__</strong></a>(self)</dt><dd><span class="code">Return&nbsp;repr(self).</span></dd></dl>
+
+<dl><dt><a name="WorldSprites-add"><strong>add</strong></a>(self, *sprites)</dt><dd><span class="code">add&nbsp;sprite(s)&nbsp;to&nbsp;group<br>
+&nbsp;<br>
+<a href="pygame.sprite.html#Group">Group</a>.<a href="#WorldSprites-add">add</a>(sprite,&nbsp;list,&nbsp;group,&nbsp;...):&nbsp;return&nbsp;None<br>
+&nbsp;<br>
+Adds&nbsp;a&nbsp;sprite&nbsp;or&nbsp;sequence&nbsp;of&nbsp;sprites&nbsp;to&nbsp;a&nbsp;group.</span></dd></dl>
+
+<dl><dt><a name="WorldSprites-add_internal"><strong>add_internal</strong></a>(self, sprite, layer=None)</dt><dd><span class="code">For&nbsp;adding&nbsp;a&nbsp;sprite&nbsp;to&nbsp;this&nbsp;group&nbsp;internally.<br>
+&nbsp;<br>
+:param&nbsp;sprite:&nbsp;The&nbsp;sprite&nbsp;we&nbsp;are&nbsp;adding.<br>
+:param&nbsp;layer:&nbsp;the&nbsp;layer&nbsp;to&nbsp;add&nbsp;to,&nbsp;if&nbsp;the&nbsp;group&nbsp;type&nbsp;supports&nbsp;layers</span></dd></dl>
+
+<dl><dt><a name="WorldSprites-clear"><strong>clear</strong></a>(self, surface, bgd)</dt><dd><span class="code">erase&nbsp;the&nbsp;previous&nbsp;position&nbsp;of&nbsp;all&nbsp;sprites<br>
+&nbsp;<br>
+<a href="pygame.sprite.html#Group">Group</a>.<a href="#WorldSprites-clear">clear</a>(surface,&nbsp;bgd):&nbsp;return&nbsp;None<br>
+&nbsp;<br>
+Clears&nbsp;the&nbsp;area&nbsp;under&nbsp;every&nbsp;drawn&nbsp;sprite&nbsp;in&nbsp;the&nbsp;group.&nbsp;The&nbsp;bgd<br>
+argument&nbsp;should&nbsp;be&nbsp;Surface&nbsp;which&nbsp;is&nbsp;the&nbsp;same&nbsp;dimensions&nbsp;as&nbsp;the<br>
+screen&nbsp;surface.&nbsp;The&nbsp;bgd&nbsp;could&nbsp;also&nbsp;be&nbsp;a&nbsp;function&nbsp;which&nbsp;accepts<br>
+the&nbsp;given&nbsp;surface&nbsp;and&nbsp;the&nbsp;area&nbsp;to&nbsp;be&nbsp;cleared&nbsp;as&nbsp;arguments.</span></dd></dl>
+
+<dl><dt><a name="WorldSprites-copy"><strong>copy</strong></a>(self)</dt><dd><span class="code">copy&nbsp;a&nbsp;group&nbsp;with&nbsp;all&nbsp;the&nbsp;same&nbsp;sprites<br>
+&nbsp;<br>
+<a href="pygame.sprite.html#Group">Group</a>.<a href="#WorldSprites-copy">copy</a>():&nbsp;return&nbsp;<a href="pygame.sprite.html#Group">Group</a><br>
+&nbsp;<br>
+Returns&nbsp;a&nbsp;copy&nbsp;of&nbsp;the&nbsp;group&nbsp;that&nbsp;is&nbsp;an&nbsp;instance&nbsp;of&nbsp;the&nbsp;same&nbsp;class<br>
+and&nbsp;has&nbsp;the&nbsp;same&nbsp;sprites&nbsp;in&nbsp;it.</span></dd></dl>
+
+<dl><dt><a name="WorldSprites-empty"><strong>empty</strong></a>(self)</dt><dd><span class="code">remove&nbsp;all&nbsp;sprites<br>
+&nbsp;<br>
+<a href="pygame.sprite.html#Group">Group</a>.<a href="#WorldSprites-empty">empty</a>():&nbsp;return&nbsp;None<br>
+&nbsp;<br>
+Removes&nbsp;all&nbsp;the&nbsp;sprites&nbsp;from&nbsp;the&nbsp;group.</span></dd></dl>
+
+<dl><dt><a name="WorldSprites-has"><strong>has</strong></a>(self, *sprites)</dt><dd><span class="code">ask&nbsp;if&nbsp;group&nbsp;has&nbsp;a&nbsp;sprite&nbsp;or&nbsp;sprites<br>
+&nbsp;<br>
+<a href="pygame.sprite.html#Group">Group</a>.<a href="#WorldSprites-has">has</a>(sprite&nbsp;or&nbsp;group,&nbsp;...):&nbsp;return&nbsp;bool<br>
+&nbsp;<br>
+Returns&nbsp;True&nbsp;if&nbsp;the&nbsp;given&nbsp;sprite&nbsp;or&nbsp;sprites&nbsp;are&nbsp;contained&nbsp;in&nbsp;the<br>
+group.&nbsp;Alternatively,&nbsp;you&nbsp;can&nbsp;get&nbsp;the&nbsp;same&nbsp;information&nbsp;using&nbsp;the<br>
+'in'&nbsp;operator,&nbsp;e.g.&nbsp;'sprite&nbsp;in&nbsp;group',&nbsp;'subgroup&nbsp;in&nbsp;group'.</span></dd></dl>
+
+<dl><dt><a name="WorldSprites-has_internal"><strong>has_internal</strong></a>(self, sprite)</dt><dd><span class="code">For&nbsp;checking&nbsp;if&nbsp;a&nbsp;sprite&nbsp;is&nbsp;in&nbsp;this&nbsp;group&nbsp;internally.<br>
+&nbsp;<br>
+:param&nbsp;sprite:&nbsp;The&nbsp;sprite&nbsp;we&nbsp;are&nbsp;checking.</span></dd></dl>
+
+<dl><dt><a name="WorldSprites-remove"><strong>remove</strong></a>(self, *sprites)</dt><dd><span class="code">remove&nbsp;sprite(s)&nbsp;from&nbsp;group<br>
+&nbsp;<br>
+<a href="pygame.sprite.html#Group">Group</a>.<a href="#WorldSprites-remove">remove</a>(sprite,&nbsp;list,&nbsp;or&nbsp;group,&nbsp;...):&nbsp;return&nbsp;None<br>
+&nbsp;<br>
+Removes&nbsp;a&nbsp;sprite&nbsp;or&nbsp;sequence&nbsp;of&nbsp;sprites&nbsp;from&nbsp;a&nbsp;group.</span></dd></dl>
+
+<dl><dt><a name="WorldSprites-remove_internal"><strong>remove_internal</strong></a>(self, sprite)</dt><dd><span class="code">For&nbsp;removing&nbsp;a&nbsp;sprite&nbsp;from&nbsp;this&nbsp;group&nbsp;internally.<br>
+&nbsp;<br>
+:param&nbsp;sprite:&nbsp;The&nbsp;sprite&nbsp;we&nbsp;are&nbsp;removing.</span></dd></dl>
+
+<dl><dt><a name="WorldSprites-sprites"><strong>sprites</strong></a>(self)</dt><dd><span class="code">get&nbsp;a&nbsp;list&nbsp;of&nbsp;sprites&nbsp;in&nbsp;the&nbsp;group<br>
+&nbsp;<br>
+<a href="pygame.sprite.html#Group">Group</a>.sprite():&nbsp;return&nbsp;list<br>
+&nbsp;<br>
+Returns&nbsp;an&nbsp;object&nbsp;that&nbsp;can&nbsp;be&nbsp;looped&nbsp;over&nbsp;with&nbsp;a&nbsp;'for'&nbsp;loop.&nbsp;(For&nbsp;now,<br>
+it&nbsp;is&nbsp;always&nbsp;a&nbsp;list,&nbsp;but&nbsp;this&nbsp;could&nbsp;change&nbsp;in&nbsp;a&nbsp;future&nbsp;version&nbsp;of<br>
+pygame.)&nbsp;Alternatively,&nbsp;you&nbsp;can&nbsp;get&nbsp;the&nbsp;same&nbsp;information&nbsp;by&nbsp;iterating<br>
+directly&nbsp;over&nbsp;the&nbsp;sprite&nbsp;group,&nbsp;e.g.&nbsp;'for&nbsp;sprite&nbsp;in&nbsp;group'.</span></dd></dl>
+
+<dl><dt><a name="WorldSprites-update"><strong>update</strong></a>(self, *args, **kwargs)</dt><dd><span class="code">call&nbsp;the&nbsp;update&nbsp;method&nbsp;of&nbsp;every&nbsp;member&nbsp;sprite<br>
+&nbsp;<br>
+<a href="pygame.sprite.html#Group">Group</a>.<a href="#WorldSprites-update">update</a>(*args,&nbsp;**kwargs):&nbsp;return&nbsp;None<br>
+&nbsp;<br>
+Calls&nbsp;the&nbsp;update&nbsp;method&nbsp;of&nbsp;every&nbsp;member&nbsp;sprite.&nbsp;All&nbsp;arguments&nbsp;that<br>
+were&nbsp;passed&nbsp;to&nbsp;this&nbsp;method&nbsp;are&nbsp;passed&nbsp;to&nbsp;the&nbsp;Sprite&nbsp;update&nbsp;function.</span></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="pygame.sprite.html#AbstractGroup">pygame.sprite.AbstractGroup</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><span class="code">dictionary&nbsp;for&nbsp;instance&nbsp;variables</span></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><span class="code">list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object</span></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table class="section">
+<tr class="decor data-decor heading-text">
+<td class="section-title" colspan=3>&nbsp;<br><strong class="bigsection">Data</strong></td></tr>
+    
+<tr><td class="decor data-decor"><span class="code">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></td><td>&nbsp;</td>
+<td class="singlecolumn"><strong>ANIMATION_SPEED</strong> = 6<br>
+<strong>TILE_SIZE</strong> = 64<br>
+<strong>WINDOW_HEIGHT</strong> = 720<br>
+<strong>WINDOW_WIDTH</strong> = 1280<br>
+<strong>Z_LAYERS</strong> = {'bg': 0, 'bg details': 4, 'bg tiles': 2, 'clouds': 1, 'fg': 7, 'main': 5, 'path': 3, 'water': 6}</td></tr></table>
+</body></html>
