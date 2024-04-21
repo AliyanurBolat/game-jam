@@ -1,10 +1,12 @@
 from settings import *
-from sprites import AnimatedSprite
+from sprites import AnimatedSprite, Sprite
 from random import randint
 from timer import Timer
 
 class UI:
     def __init__(self, font, frames):
+        self.all_sprites = pygame.sprite.Group()
+
         self.display_surface = pygame.display.get_surface()
         self.sprites = pygame.sprite.Group()
         self.font = font
@@ -18,6 +20,17 @@ class UI:
         self.coin_amount = 0
         self.coin_timer = Timer(1000)
         self.coin_surf = frames['coin']
+
+        # jacket
+        self.jacket_bol = None
+        self.jacket_surf = frames['jacket']
+        # self.jacket_empty_surf = frames['jacket_empty']
+
+        # backpack
+        self.backpack_bol = None
+        self.backpack_surf = frames['backpack']
+        # self.backpack_empty_surf = frames['backpack_empty']
+
 
     def create_hearts(self, amount):
         for sprite in self.sprites:
@@ -36,15 +49,35 @@ class UI:
             coin_rect = self.coin_surf.get_frect(center = text_rect.bottomleft).move(0,-6)
             self.display_surface.blit(self.coin_surf, coin_rect)
 
+    def display_jacket(self):
+        
+        if self.jacket_bol == True:
+            jacket_rect = self.jacket_surf.get_frect(topleft = (0, 20))
+            self.display_surface.blit(self.jacket_surf, jacket_rect)
+    
+    def display_backpack(self):
+
+        if self.backpack_bol == True:
+            backpack_rect = self.backpack_surf.get_frect(topleft = (50, 20))
+            self.display_surface.blit(self.backpack_surf, backpack_rect)
+
     def show_coins(self, amount):
         self.coin_amount = amount
         self.coin_timer.activate()
+
+    def show_jacket(self, jacket_collected):
+        self.jacket_bol = jacket_collected
+        
+    def show_backpack(self, backpack_collected):
+        self.backpack_bol = backpack_collected
 
     def update(self, dt):
         self.coin_timer.update()
         self.sprites.update(dt)
         self.sprites.draw(self.display_surface)
         self.display_text()
+        self.display_jacket()
+        self.display_backpack()
 
 class Heart(AnimatedSprite):
     def __init__(self, pos, frames, groups):

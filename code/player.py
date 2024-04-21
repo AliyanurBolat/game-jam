@@ -22,7 +22,7 @@ class Player(pygame.sprite.Sprite):
 
         # movement
         self.direction = vector()
-        self.speed = 200
+        self.speed = 500
         self.gravity = 1300
         self.jump = False
         self.jump_height = 900
@@ -46,7 +46,7 @@ class Player(pygame.sprite.Sprite):
         # audio
         self.attack_sound = attack_sound
         self.jump_sound = jump_sound
-        self.jump_sound.set_volume(0.3)
+        self.jump_sound.set_volume(0.2)
 
     def input(self):
         keys = pygame.key.get_pressed()
@@ -76,21 +76,10 @@ class Player(pygame.sprite.Sprite):
             if keys[pygame.K_s]:
                 self.timers['platform skip'].activate()
 
-            if keys[pygame.K_x]:
-                self.attack()
-
-
             self.direction.x = input_vector.normalize().x if input_vector else input_vector.x
 
         if keys[pygame.K_SPACE]:
             self.jump = True
-
-    def attack(self):
-        if not self.timers['attack block'].active:
-            self.attacking = True
-            self.frame_index = 0
-            self.timers['attack block'].activate()
-            self.attack_sound.play()
 
     def move(self, dt):
         # horizontal 
@@ -187,28 +176,22 @@ class Player(pygame.sprite.Sprite):
 
     def animate(self, dt):
         self.frame_index += ANIMATION_SPEED * dt
-        if self.state == 'attack' and self.frame_index >= len(self.frames[self.state]):
-            self.state = 'idle'
+
         self.image = self.frames[self.state][int(self.frame_index % len(self.frames[self.state]))]
         self.image = self.image if self.facing_right else pygame.transform.flip(self.image, True, False)
 
-        if self.attacking and self.frame_index >= len(self.frames[self.state]):
-            self.attacking = False
+
             
     def get_state(self):
         if self.on_surface['floor']:
-            if self.attacking:
-                self.state = 'attack'
-            else:
-                self.state = 'idle' if self.direction.x == 0 else 'run'
+            
+            self.state = 'idle' if self.direction.x == 0 else 'run'
         else:
-            if self.attacking:
-                self.state = 'air_attack'
+            
+            if any((self.on_surface['left'], self.on_surface['right'])):
+                self.state = 'wall'
             else:
-                if any((self.on_surface['left'], self.on_surface['right'])):
-                    self.state = 'wall'
-                else:
-                    self.state = 'jump' if self.direction.y < 0 else 'fall'
+                self.state = 'jump' if self.direction.y < 0 else 'fall'
 
     def get_damage(self):
         if not self.timers['hit'].active:

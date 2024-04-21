@@ -2,6 +2,7 @@ from settings import *
 from sprites import Sprite, Cloud
 from random import choice, randint
 from timer import Timer
+from os.path import join
 
 class WorldSprites(pygame.sprite.Group):
     def __init__(self, data):
@@ -30,10 +31,8 @@ class WorldSprites(pygame.sprite.Group):
                 else:
                     self.display_surface.blit(sprite.image, sprite.rect.topleft + self.offset)
 
-
-
 class AllSprites(pygame.sprite.Group):
-    def __init__(self, width, height, clouds, horizon_line, bg_tile = None, top_limit = 0):
+    def __init__(self, width, height, clouds, horizon_line, data, bg_tile = None, top_limit = 0):
         super().__init__()
         self.display_surface = pygame.display.get_surface()
         self.offset = vector()
@@ -45,6 +44,16 @@ class AllSprites(pygame.sprite.Group):
             'bottom': -self.height + WINDOW_HEIGHT}
         self.sky = not bg_tile
         self.horizon_line = horizon_line
+        self.data = data
+
+        self.siren = pygame.mixer.Sound(join('', 'audio', 'siren.wav'))
+        self.bg_music = pygame.mixer.Sound(join('', 'audio', 'bg.mp3'))
+        
+        
+        self.siren.set_volume(0.2)
+        self.bg_music.set_volume(0.1)
+        
+        
 
         if bg_tile:
             for col in range(width):
@@ -102,8 +111,19 @@ class AllSprites(pygame.sprite.Group):
         Cloud(pos, surf, self)
 
     def draw(self, target_pos, dt):
-        self.offset.x = -(target_pos[0] - WINDOW_WIDTH / 2)
-        self.offset.y = -(target_pos[1] - WINDOW_HEIGHT / 2)
+        if not self.data.health <=0 and not self.data.win:
+            
+            self.siren.play(-1)
+            self.bg_music.play(-1)
+
+            self.offset.x = -(target_pos[0] - WINDOW_WIDTH / 2) - randint(-1, 1)
+            self.offset.y = -(target_pos[1] - WINDOW_HEIGHT / 2) - randint(-1, 1)
+        else:
+            self.siren.stop()
+            self.bg_music.stop()
+                
+            self.offset.x = -(target_pos[0] - WINDOW_WIDTH / 2)
+            self.offset.y = -(target_pos[1] - WINDOW_HEIGHT / 2)
         self.camera_constraint()
         
         if self.sky:

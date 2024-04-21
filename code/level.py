@@ -3,8 +3,8 @@ from sprites import Sprite, MovingSprite, AnimatedSprite, Spike, Item, ParticleE
 from player import Player
 from groups import AllSprites
 from random import uniform
-from enemies import Tooth, Shell, Pearl
-from debug import debug
+from enemies import Tooth, Crowd, Chandelier
+
 
 class Level:
     def __init__(self, tmx_map, level_frames, audio_files, data, switch_stage):
@@ -29,27 +29,33 @@ class Level:
             bg_tile = bg_tile,
             top_limit = tmx_level_properties['top_limit'],
             clouds = {'large': level_frames['cloud_large'], 'small': level_frames['cloud_small']},
-            horizon_line = tmx_level_properties['horizon_line'])
+            horizon_line = tmx_level_properties['horizon_line'],
+            data = data)
         self.collision_sprites = pygame.sprite.Group()
         self.semicollidable_sprites = pygame.sprite.Group()
         self.damage_sprites = pygame.sprite.Group()
+        self.slowing_sprites = pygame.sprite.Group()
         self.tooth_sprites = pygame.sprite.Group()
         self.pearl_sprites = pygame.sprite.Group()
         self.item_sprites = pygame.sprite.Group()
+        self.jacket_sprites = pygame.sprite.Group()
+        self.backpack_sprites = pygame.sprite.Group()
+        self.fail_sprite = pygame.sprite.Group()
 
         self.setup(tmx_map, level_frames, audio_files)
 
         # frames
-        self.pearl_surf = level_frames['pearl']
+       
         self.particle_frames = level_frames['particle']
-
+        self.fail_surf = level_frames['fail']
+        self.win_surf = level_frames['win']
         # sound
         self.coin_sound = audio_files['coin']
         self.coin_sound.set_volume(0.2)
         self.damage_sound = audio_files['damage']
+        self.damage_sound.set_volume(0.2)
         self.coin_sound.set_volume(0.4)
-        self.pearl_sound = audio_files['pearl']
-
+        
     def setup(self, tmx_map, level_frames, audio_files):
         # tiles
         for layer in ['BG', 'Terrain', 'FG', 'Platforms']:
@@ -160,18 +166,22 @@ class Level:
             if obj.name == 'tooth':
                 Tooth((obj.x, obj.y), level_frames['tooth'], (self.all_sprites, self.damage_sprites, self.tooth_sprites), self.collision_sprites)
 
-            if obj.name == 'shell':
-                Shell(
-                    pos = (obj.x, obj.y), 
-                    frames = level_frames['shell'],
-                    groups = (self.all_sprites, self.collision_sprites),
-                    reverse = obj.properties['reverse'],
-                    player = self.player,
-                    create_pearl = self.create_pearl)
+
+            if obj.name == 'crowd':
+                Crowd((obj.x, obj.y), level_frames['crowd'], (self.all_sprites, self.slowing_sprites, self.damage_sprites), self.collision_sprites)
+            if obj.name == 'chandelier':
+                Chandelier((obj.x, obj.y), level_frames['chandelier'], (self.all_sprites, self.damage_sprites), self.player, self.collision_sprites)
 
         # items
         for obj in tmx_map.get_layer_by_name('Items'):
-            Item(obj.name, (obj.x + TILE_SIZE / 2, obj.y + TILE_SIZE / 2), level_frames['items'][obj.name], (self.all_sprites, self.item_sprites), self.data)
+            if obj.name == 'jacket':
+                Item(obj.name, (obj.x + TILE_SIZE / 2, obj.y + TILE_SIZE / 2), level_frames['items'][obj.name], (self.all_sprites, self.jacket_sprites), self.data)
+            
+            if obj.name == 'backpack':
+                Item(obj.name, (obj.x + TILE_SIZE / 2, obj.y + TILE_SIZE / 2), level_frames['items'][obj.name], (self.all_sprites, self.backpack_sprites), self.data)
+
+            else:
+                Item(obj.name, (obj.x + TILE_SIZE / 2, obj.y + TILE_SIZE / 2), level_frames['items'][obj.name], (self.all_sprites, self.item_sprites), self.data)
 
         # water
         for obj in tmx_map.get_layer_by_name('Water'):
@@ -182,10 +192,10 @@ class Level:
                     x = obj.x + col * TILE_SIZE
                     y = obj.y + row * TILE_SIZE
                     if row == 0:
-                        AnimatedSprite((x, y), level_frames['water_top'], self.all_sprites, Z_LAYERS['water'])
+                        AnimatedSprite((x, y), level_frames['water_top'], (self.all_sprites, self.damage_sprites), Z_LAYERS['water'])
                     else:
-                        Sprite((x, y), level_frames['water_body'], self.all_sprites, Z_LAYERS['water'])
-
+                        Sprite((x, y), level_frames['water_body'], (self.all_sprites, self.damage_sprites), Z_LAYERS['water'])
+       
     def create_pearl(self, pos, direction):
         Pearl(pos, (self.all_sprites, self.damage_sprites, self.pearl_sprites), self.pearl_surf, direction, 150)
         self.pearl_sound.play()
@@ -205,6 +215,16 @@ class Level:
                     sprite.kill()
                     ParticleEffectSprite(sprite.rect.center, self.particle_frames, self.all_sprites)
 
+    def slowing_collision(self):
+        if self.slowing_sprites:
+            slowing_sprites = pygame.sprite.spritecollide(self.player, self.slowing_sprites, False)
+            if slowing_sprites:
+                self.player.speed = 50
+                self.player.jump_height = 400
+            else:
+                self.player.speed = 500
+                self.player.jump_height = 700
+
     def item_collision(self):
         if self.item_sprites:
             item_sprites = pygame.sprite.spritecollide(self.player, self.item_sprites, True)
@@ -212,6 +232,23 @@ class Level:
                 item_sprites[0].activate()
                 ParticleEffectSprite(item_sprites[0].rect.center, self.particle_frames, self.all_sprites)
                 self.coin_sound.play()
+
+    def jacket_collision(self):
+        if self.jacket_sprites:
+            jacket_sprites = pygame.sprite.spritecollide(self.player, self.jacket_sprites, True)
+            if jacket_sprites:
+                jacket_sprites[0].activate()
+                ParticleEffectSprite(jacket_sprites[0].rect.center, self.particle_frames, self.all_sprites)
+        if self.backpack_sprites:
+            backpack_sprites = pygame.sprite.spritecollide(self.player, self.backpack_sprites, True)
+            if backpack_sprites:
+                backpack_sprites[0].activate()
+                ParticleEffectSprite(backpack_sprites[0].rect.center, self.particle_frames, self.all_sprites)
+
+        if self.data.health <= 0:
+            for sprite in self.all_sprites:
+                sprite.kill()
+            Sprite((self.player.rect.x - 600, self.player.rect.y - 320), self.fail_surf, self.all_sprites)
 
     def attack_collision(self):
         for target in self.pearl_sprites.sprites() + self.tooth_sprites.sprites():
@@ -232,15 +269,21 @@ class Level:
             self.switch_stage('overworld', -1)
         # success
         if self.player.hitbox_rect.colliderect(self.level_finish_rect):
-            self.switch_stage('overworld', self.level_unlock)
-
+            self.player.kill()
+            for sprite in self.all_sprites:
+                sprite.kill()
+            # self.switch_stage('overworld', self.level_unlock)
+            Sprite((self.player.rect.x - 600, self.player.rect.y - 320), self.win_surf, self.all_sprites)
+        
     def run(self, dt):
         self.all_sprites.update(dt)
 
         self.display_surface.fill('black')
         self.pearl_collision()
         self.hit_collision()
+        self.slowing_collision()
         self.item_collision()
+        self.jacket_collision()
         self.attack_collision()
         self.check_constraint()
 
