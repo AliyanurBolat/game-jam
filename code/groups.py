@@ -2,34 +2,6 @@ from settings import *
 from sprites import Sprite, Cloud
 from random import choice, randint
 from timer import Timer
-from os.path import join
-
-class WorldSprites(pygame.sprite.Group):
-    def __init__(self, data):
-        super().__init__()
-        self.display_surface = pygame.display.get_surface()
-        self.data = data
-        self.offset = vector()
-    
-    def draw(self, target_pos):
-        self.offset.x = -(target_pos[0] - WINDOW_WIDTH / 2)
-        self.offset.y = -(target_pos[1] - WINDOW_HEIGHT / 2)
-
-        # background
-        for sprite in sorted(self, key = lambda sprite: sprite.z):
-            if sprite.z < Z_LAYERS['main']:
-                if sprite.z == Z_LAYERS['path']:
-                    if sprite.level <= self.data.unlocked_level:
-                        self.display_surface.blit(sprite.image, sprite.rect.topleft + self.offset)
-                else:
-                    self.display_surface.blit(sprite.image, sprite.rect.topleft + self.offset)
-        # main
-        for sprite in sorted(self, key = lambda sprite: sprite.rect.centery):
-            if sprite.z == Z_LAYERS['main']:
-                if hasattr(sprite, 'icon'):
-                    self.display_surface.blit(sprite.image, sprite.rect.topleft + self.offset + vector(0, -28))
-                else:
-                    self.display_surface.blit(sprite.image, sprite.rect.topleft + self.offset)
 
 class AllSprites(pygame.sprite.Group):
     def __init__(self, width, height, clouds, horizon_line, data, bg_tile = None, top_limit = 0):
@@ -45,16 +17,7 @@ class AllSprites(pygame.sprite.Group):
         self.sky = not bg_tile
         self.horizon_line = horizon_line
         self.data = data
-
-        self.siren = pygame.mixer.Sound(join('', 'audio', 'siren.wav'))
-        self.bg_music = pygame.mixer.Sound(join('', 'audio', 'bg.mp3'))
         
-        
-        self.siren.set_volume(0.2)
-        self.bg_music.set_volume(0.1)
-        
-        
-
         if bg_tile:
             for col in range(width):
                 for row in range(-int(top_limit / TILE_SIZE) - 1, height):
@@ -112,15 +75,10 @@ class AllSprites(pygame.sprite.Group):
 
     def draw(self, target_pos, dt):
         if not self.data.health <=0 and not self.data.win:
-            
-            self.siren.play(-1)
-            self.bg_music.play(-1)
 
             self.offset.x = -(target_pos[0] - WINDOW_WIDTH / 2) - randint(-1, 1)
             self.offset.y = -(target_pos[1] - WINDOW_HEIGHT / 2) - randint(-1, 1)
         else:
-            self.siren.stop()
-            self.bg_music.stop()
                 
             self.offset.x = -(target_pos[0] - WINDOW_WIDTH / 2)
             self.offset.y = -(target_pos[1] - WINDOW_HEIGHT / 2)
@@ -132,5 +90,6 @@ class AllSprites(pygame.sprite.Group):
             self.draw_large_cloud(dt)
 
         for sprite in sorted(self, key = lambda sprite: sprite.z):
+            
             offset_pos = sprite.rect.topleft + self.offset
             self.display_surface.blit(sprite.image, offset_pos)

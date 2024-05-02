@@ -47,8 +47,7 @@ class Level:
         # frames
        
         self.particle_frames = level_frames['particle']
-        self.fail_surf = level_frames['fail']
-        self.win_surf = level_frames['win']
+        
         # sound
         self.coin_sound = audio_files['coin']
         self.coin_sound.set_volume(0.2)
@@ -245,10 +244,7 @@ class Level:
                 backpack_sprites[0].activate()
                 ParticleEffectSprite(backpack_sprites[0].rect.center, self.particle_frames, self.all_sprites)
 
-        if self.data.health <= 0:
-            for sprite in self.all_sprites:
-                sprite.kill()
-            Sprite((self.player.rect.x - 600, self.player.rect.y - 320), self.fail_surf, self.all_sprites)
+        
 
     def attack_collision(self):
         for target in self.pearl_sprites.sprites() + self.tooth_sprites.sprites():
@@ -265,16 +261,20 @@ class Level:
             self.player.hitbox_rect.right = self.level_width
 
         # bottom border
-        if self.player.hitbox_rect.bottom > self.level_bottom:
-            self.switch_stage('overworld', -1)
+        # if self.player.hitbox_rect.bottom > self.level_bottom:
+        #     self.switch_stage('overworld', -1)
+
         # success
         if self.player.hitbox_rect.colliderect(self.level_finish_rect):
-            self.player.kill()
-            for sprite in self.all_sprites:
-                sprite.kill()
-            # self.switch_stage('overworld', self.level_unlock)
-            Sprite((self.player.rect.x - 600, self.player.rect.y - 320), self.win_surf, self.all_sprites)
-        
+            # self.player.kill()
+            # for sprite in self.all_sprites:
+            #     sprite.kill()
+            # Sprite((self.player.rect.x - 600, self.player.rect.y - 320), self.win_surf, self.all_sprites)
+            self.data.win = True
+    
+    def reset(self):
+        self.player.reset()
+
     def run(self, dt):
         self.all_sprites.update(dt)
 

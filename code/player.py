@@ -19,6 +19,7 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_frect(topleft = pos)
         self.hitbox_rect = self.rect.inflate(-76, -36)
         self.old_rect = self.hitbox_rect.copy()
+        self.init_rect = self.old_rect.copy()
 
         # movement
         self.direction = vector()
@@ -40,7 +41,7 @@ class Player(pygame.sprite.Sprite):
             'wall slide block' : Timer(250),
             'platform skip' : Timer(100),
             'attack block' : Timer(500),
-            'hit' : Timer(400)
+            'hit' : Timer(600)
         }
 
         # audio
@@ -204,6 +205,9 @@ class Player(pygame.sprite.Sprite):
             white_surf = white_mask.to_surface()
             white_surf.set_colorkey('black')
             self.image = white_surf
+
+    def reset(self):
+        self.data.health = 5
 
     def update(self, dt):
         self.old_rect = self.hitbox_rect.copy()
